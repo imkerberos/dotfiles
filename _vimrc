@@ -142,7 +142,7 @@ filetype on                   " try to detect filetypes
 filetype plugin indent on     " enable loading indent file for filetype
 set number                    " Display line numbers
 set numberwidth=1             " using only 1 column (and 1 space) while possible
-set background=dark           " We are using dark background in vim
+set background=light          " We are using dark background in vim
 set title                     " show title in console title bar
 set wildmenu                  " Menu completion in command mode on <Tab>
 set wildmode=full             " <Tab> cycles between all matching choices.
@@ -180,7 +180,7 @@ set virtualedit=block       " Let cursor move past the last char in <C-v> mode
 set scrolloff=3             " Keep 3 context lines above and below the cursor
 set backspace=2             " Allow backspacing over autoindent, EOL, and BOL
 set showmatch               " Briefly jump to a paren once it's balanced
-set nowrap                  " don't wrap text
+"set nowrap                  " don't wrap text
 set linebreak               " don't wrap textin the middle of a word
 set autoindent              " always set autoindenting on
 set smartindent             " use smart indent if there is no indent file
@@ -220,7 +220,7 @@ set laststatus=2            " Always show statusline, even if only 1 window.
 set statusline=[%l,%v\ %P%M]\ %f\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}
 
 " displays tabs with :set list & displays when a line runs off-screen
-set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
+set listchars=tab:>-,trail:-,precedes:<,extends:>
 set list
 
 """ Searching and Patterns
@@ -232,14 +232,14 @@ set incsearch               " Incrementally search while typing a /regex
 
 """" Display
 if has("gui_running")
-    colorscheme desert
+    colorscheme solarized
     " Remove menu bar
     set guioptions-=m
 
     " Remove toolbar
     set guioptions-=T
 else
-    colorscheme torte
+    colorscheme solarized
 endif
 
 " Paste from clipboard
@@ -303,3 +303,10 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
 endif
 
 set colorcolumn=79
+
+if has("gui_running")
+    set fencs=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+    set guifont=Monaco:h14
+    set guifontwide=FZY1K--GBK1-0:h16
+    set linespace=4
+endif

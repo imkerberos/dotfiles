@@ -172,3 +172,42 @@ export GIT_EDITOR="$vim"
 
 # Add git and svn branch names
 export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
+
+PYSIDE_PYTHON_PATH=/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages
+PYTHONPATH=${PYSIDE_PYTHON_PATH}
+export PYTHONPATH
+
+HOMEBREW_RUBY_PATH=$(brew --prefix ruby)/bin
+HOMEBREW_PYTHON_SCRIPT_PATH=/usr/local/share/python
+HOMEBREW_COREUTILS_PATH=$(brew --prefix coreutils)/bin
+HOMEBREW_ANDROID_SDK_PATH=$(brew --prefix android-sdk)/bin
+HOMEBREW_ANDROID_NDK_PATH=$(brew --prefix android-ndk)/bin
+
+PATH=${HOMEBREW_ANDROID_NDK_PATH}:${HOMEBREW_ANDROID_SDK_PATH}:${HOMEBREW_PYTHON_SCRIPT_PATH}:${HOMEBREW_COREUTILS_PATH}:${HOMEBREW_RUBY_PATH}:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+export PATH
+
+HISTIGNORE="pwd:ls"
+
+export HISTIGNORE
+
+#mencoder 转换iphone视频
+function iphonevideoconvert {
+    src_file=$1
+    base_name=`basename $1`
+    out_file=${base_name%%.*}.mp4
+
+    echo "convert $src_file to $out_file"
+    mencoder -of lavf -lavfopts format=mp4 -vf scale=480:-3:0:0:0.00:0.60:ntsc:1,harddup,softskip,dsize=480:-3 -ovc x264 -x264encopts bitrate=200:vbv_maxrate=300:vbv_bufsize=500:me=umh:subq=6:trellis=1:level_idc=30:global_header:threads=auto:pass=1:turbo -oac faac -faacopts mpeg=4:object=2:br=44:raw  $src_file -o $out_file
+}
+
+#重命名 MacOS X 的机器名
+function kmbprename {
+    sudo scutil --set ComputerName "kmacbook"
+    sudo scutil --set LocalHostName "local"
+    sudo scutil --set HostName "kmacbook.local"
+}
+
+#vim-cocoa 为 gvim
+function gvim() {
+	/Applications/Vim.app/Contents/MacOS/Vim -g "$@"
+}
