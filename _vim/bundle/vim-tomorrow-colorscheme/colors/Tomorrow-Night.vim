@@ -320,18 +320,17 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rubyRepeat", s:purple, "", "")
 
 	" Python Highlighting
-	call <SID>X("pythonInclude", s:orange, "", "")
-	call <SID>X("pythonStatement", s:orange, "", "")
-	call <SID>X("pythonConditional", s:orange, "", "")
-	call <SID>X("pythonRepeat", s:orange, "", "")
-	call <SID>X("pythonOperator", s:orange, "", "")
+	call <SID>X("pythonInclude", s:purple, "", "")
+	call <SID>X("pythonStatement", s:purple, "", "")
+	call <SID>X("pythonConditional", s:purple, "", "")
+	call <SID>X("pythonRepeat", s:purple, "", "")
+	call <SID>X("pythonOperator", s:purple, "", "")
 	call <SID>X("pythonBuiltin", s:purple, "", "")
 	call <SID>X("pythonException", s:orange, "", "")
-	call <SID>X("pythonExceptions", s:green, "", "")
+	call <SID>X("pythonExceptions", s:orange, "", "")
 	call <SID>X("pythonDecorator", s:blue, "", "")
 	call <SID>X("pythonFunction", s:yellow, "", "")
 	call <SID>X("pythonNumber", s:red, "", "")
-	call <SID>X("pythonString", s:aqua, "", "")
 
 	" JavaScript Highlighting
 	call <SID>X("javaScriptBraces", s:foreground, "", "")
