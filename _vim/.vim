@@ -1,1 +1,1 @@
-/home/sontek/code/dotfiles/_vim
+/Users/kerberos/Documents/KerberosDotFiles/_vim

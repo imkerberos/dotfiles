@@ -52,7 +52,9 @@
 " ==========================================================
 set nocompatible              " Don't be compatible with vi
 let mapleader=","             " change the leader to be a comma vs slash
-
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 " Seriously, guys. It's not like :W is bound to anything anyway.
 command! W :w
 
@@ -130,9 +132,6 @@ map <leader>r :RopeRename<CR>
 " Pathogen - Allows us to organize our vim plugins
 " ==========================================================
 " Load pathogen with docs for all plugins
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
 " ==========================================================
 " Basic Settings
@@ -142,7 +141,7 @@ filetype on                   " try to detect filetypes
 filetype plugin indent on     " enable loading indent file for filetype
 set number                    " Display line numbers
 set numberwidth=1             " using only 1 column (and 1 space) while possible
-set background=light          " We are using dark background in vim
+set background=dark           " We are using dark background in vim
 set title                     " show title in console title bar
 set wildmenu                  " Menu completion in command mode on <Tab>
 set wildmode=full             " <Tab> cycles between all matching choices.
@@ -309,4 +308,11 @@ if has("gui_running")
     set guifont=Monaco:h14
     set guifontwide=FZY1K--GBK1-0:h16
     set linespace=4
+endif
+if has("multi_byte_ime")
+    highlight Cursor guifg=bg guibg=Green
+    highlight CursorIM guifg=NONE guibg=Purple
+    set iminsert=0 imsearch=0
+    " 插入模式输入法状态未被记录时，默认关闭IME
+    "inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
