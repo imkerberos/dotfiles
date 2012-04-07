@@ -99,7 +99,7 @@ if $TERM_IS_COLOR && ( dircolors --help && ls --color ) &> /dev/null; then
     [[ -f "$POSSIBLE_DIR_COLORS" ]] && [[ -r "$POSSIBLE_DIR_COLORS" ]] && eval `dircolors -b "$POSSIBLE_DIR_COLORS"` && break
   done
 
-  alias ls="ls --color=auto"
+  alias ls="ls -F --color=auto"
   alias ll="ls --color=auto -l"
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
