@@ -12,7 +12,7 @@ let s:comment = "969896"
 let s:red = "cc6666"
 let s:orange = "de935f"
 let s:yellow = "f0c674"
-let s:green = "b5bd68"
+let s:green = "ceffac"
 let s:aqua = "8abeb7"
 let s:blue = "81a2be"
 let s:purple = "b294bb"
@@ -320,10 +320,18 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rubyRepeat", s:purple, "", "")
 
 	" Python Highlighting
-	call <SID>X("pythonInclude", s:purple, "", "")
-	call <SID>X("pythonStatement", s:purple, "", "")
-	call <SID>X("pythonConditional", s:purple, "", "")
-	call <SID>X("pythonFunction", s:blue, "", "")
+	call <SID>X("pythonInclude", s:orange, "", "")
+	call <SID>X("pythonStatement", s:orange, "", "")
+	call <SID>X("pythonConditional", s:orange, "", "")
+	call <SID>X("pythonRepeat", s:orange, "", "")
+	call <SID>X("pythonOperator", s:orange, "", "")
+	call <SID>X("pythonBuiltin", s:purple, "", "")
+	call <SID>X("pythonException", s:orange, "", "")
+	call <SID>X("pythonExceptions", s:green, "", "")
+	call <SID>X("pythonDecorator", s:blue, "", "")
+	call <SID>X("pythonFunction", s:yellow, "", "")
+	call <SID>X("pythonNumber", s:red, "", "")
+	call <SID>X("pythonString", s:aqua, "", "")
 
 	" JavaScript Highlighting
 	call <SID>X("javaScriptBraces", s:foreground, "", "")
