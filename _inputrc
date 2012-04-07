@@ -1,4 +1,4 @@
-set editing-mode vi
+#set editing-mode vi
 
 # Adds punctuation as word delimiters
 set bind-tty-special-chars off
