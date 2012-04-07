@@ -64,3 +64,15 @@
 [submodule "_vim/bundle/supertab"]
 	path = _vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "_vim/bundle/vim-eddie"]
+	path = _vim/bundle/vim-eddie
+	url = https://github.com/mattsa/vim-eddie.git
+[submodule "_vim/bundle/vim-haml"]
+	path = _vim/bundle/vim-haml
+	url = https://github.com/tpope/vim-haml.git
+[submodule "_vim/bundle/clang_complete"]
+	path = _vim/bundle/clang_complete
+	url = https://github.com/Rip-Rip/clang_complete.git
+[submodule "_vim/bundle/cocoa.vim"]
+	path = _vim/bundle/cocoa.vim
+	url = https://github.com/msanders/cocoa.vim.git

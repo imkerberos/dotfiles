@@ -231,14 +231,14 @@ set incsearch               " Incrementally search while typing a /regex
 
 """" Display
 if has("gui_running")
-    colorscheme solarized
+    colorscheme desert
     " Remove menu bar
     set guioptions-=m
 
     " Remove toolbar
     set guioptions-=T
 else
-    colorscheme solarized
+    colorscheme desert
 endif
 
 " Paste from clipboard
@@ -301,7 +301,7 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
     source $VIRTUAL_ENV/.vimrc
 endif
 
-set colorcolumn=79
+set colorcolumn=129
 
 if has("gui_running")
     set fencs=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
