@@ -274,7 +274,7 @@ let g:acp_completeoptPreview=1
 " ============================================================
 " Mako/HTML
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
-autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 " Python
 "au BufRead *.py compiler nose
@@ -318,3 +318,75 @@ if has("multi_byte_ime")
     " 插入模式输入法状态未被记录时，默认关闭IME
     "inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
+nnoremap ; :
+
+map <leader>tn :tabnew
+map <leader>te :tabedit
+map <leader>tc :tabclose
+map <leader>tm :tabmove
+
+" markdown preview
+python <<EOF
+import chardet
+import markdown
+from markdown.extensions import *
+import vim
+import os
+class ClassAdderTreeprocessor(markdown.treeprocessors.Treeprocessor):
+    def run(self, root):
+        self.set_css_class(root)
+        return root
+
+    def set_css_class(self, element):
+        for child in element:
+            if child.tag == "table":
+                child.set("class", self.ext.getConfig("table_css_class") ) #set the class attribute
+                self.set_css_class(child) # run recursively on children
+
+class ClassAdderExtension(markdown.Extension):
+    def __init__(self, *args, **configs):
+        # define default configs
+        self.config = {
+            'table_css_class' : ["table table-bordered table-striped",
+                           "Set class name for p tags - Default: something-css-like"]
+            }
+        # Override defaults with user settings
+        for key, value in configs.items():
+            self.setConfig(key, value)
+
+    def extendMarkdown(self, md, md_globals):
+        # Insert a tree-processor that adds the configured CSS class to table tags
+        treeprocessor = ClassAdderTreeprocessor(md)
+        treeprocessor.ext = self
+        md.treeprocessors['css'] = treeprocessor
+
+def markdown_preview ():
+    buffer = []
+    for x in vim.current.buffer:
+        c = chardet.detect (x)
+        encoding = c['encoding'] if c['encoding'] else 'utf-8'
+        buffer.append (x.decode(encoding))
+
+    text = u'\n'.join (buffer)
+
+    ext = ClassAdderExtension ()
+
+    content = markdown.markdown( text,
+        output_format='html4',
+        extensions=['tables', 'toc', 'codehilite', ext],
+        )
+
+    home_path = os.path.expanduser ('~/')
+    try:
+        bootstrap_css_style = open(home_path + u'.vim/plugin/bootstrap.css').read().decode('utf-8')
+        desert_codehilite_style = open(home_path + u'.vim/plugin/codehilite.css').read().decode('utf-8')
+
+        content = u'<html><head><style type="text/css">' + bootstrap_css_style + desert_codehilite_style + u'</style>\n' +u'</head><body><div class="container">' + content + u"</div></body></html>"
+    except Exception, e:
+        pass
+
+    open (home_path + u'tmp/markdown.html', 'w').write (content.encode('utf-8'))
+    vim.command (u'!open ~/tmp/markdown.html')
+    return
+EOF
+map <leader>md : py markdown_preview()<CR>

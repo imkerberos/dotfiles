@@ -176,6 +176,9 @@ export GIT_EDITOR="vim"
 # Add git and svn branch names
 export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
 
+########## end dotfile ############
+########## Kerberos customize ############
+
 PYSIDE_PYTHON_PATH=/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages
 PYTHONPATH=${PYSIDE_PYTHON_PATH}
 export PYTHONPATH
@@ -185,8 +188,10 @@ HOMEBREW_PYTHON_SCRIPT_PATH=/usr/local/share/python
 HOMEBREW_COREUTILS_PATH=$(brew --prefix coreutils)/libexec/gnubin
 HOMEBREW_ANDROID_SDK_PATH=$(brew --prefix android-sdk)/bin
 HOMEBREW_ANDROID_NDK_PATH=$(brew --prefix android-ndk)/bin
+HOMEBREW_HASKELL_PATH=${HOME}/.cabal/bin
+MACTEX_PATH=/usr/texbin
 
-PATH=${HOMEBREW_ANDROID_NDK_PATH}:${HOMEBREW_ANDROID_SDK_PATH}:${HOMEBREW_PYTHON_SCRIPT_PATH}:${HOMEBREW_COREUTILS_PATH}:${HOMEBREW_RUBY_PATH}:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+PATH=${HOMEBREW_HASKELL_PATH}:${HOMEBREW_ANDROID_NDK_PATH}:${HOMEBREW_ANDROID_SDK_PATH}:${HOMEBREW_PYTHON_SCRIPT_PATH}:${HOMEBREW_COREUTILS_PATH}:${HOMEBREW_RUBY_PATH}:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:${MACTEX_PATH}
 export PATH
 
 HISTIGNORE="pwd:ls"
@@ -214,3 +219,28 @@ function kmbprename {
 function gvim() {
 	/Applications/Vim.app/Contents/MacOS/Vim -g "$@"
 }
+
+MANPATH=/usr/local/share/man:/usr/share/man:/usr/X11/share/man
+export MANPATH
+
+#export PAGER="`which less` -s"
+#export BROWSER="$PAGER"
+
+export LESS_TERMCAP_mb=$'\E[37;5;167m'
+export LESS_TERMCAP_md=$'\E[38;5;39m'
+export LESS_TERMCAP_me=$'\E[38;5;231m'
+export LESS_TERMCAP_se=$'\E[38;5;231m'
+export LESS_TERMCAP_so=$'\E[38;5;167m'
+export LESS_TERMCAP_ue=$'\E[38;5;231m'
+export LESS_TERMCAP_us=$'\E[38;5;167m'
+
+#export LESS_TERMCAP_mb=$'\E[01;31m'
+#export LESS_TERMCAP_md=$'\E[01;31m'
+#export LESS_TERMCAP_me=$'\E[0m'
+#export LESS_TERMCAP_se=$'\E[0m'
+#export LESS_TERMCAP_so=$'\E[01;44;33m'
+#export LESS_TERMCAP_ue=$'\E[0m'
+#export LESS_TERMCAP_us=$'\E[01;32m'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" && rvm use 1.9.3 # Load RVM function
