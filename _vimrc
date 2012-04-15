@@ -325,6 +325,8 @@ map <leader>te :tabedit
 map <leader>tc :tabclose
 map <leader>tm :tabmove
 
+" markdown fix for jekyll yaml formatter
+autocmd BufNewFile,BufRead *.markdown,*.md,*.mkd syntax match Comment /\%^---\_.\{-}---$/
 " markdown preview
 python <<EOF
 import chardet
